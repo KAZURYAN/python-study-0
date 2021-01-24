@@ -27,8 +27,6 @@ def set_driver(driver_path, headless_flg):
     return Chrome(executable_path=os.getcwd() + "/" + driver_path, options=options)
 
 # main処理
-
-
 def main():
     search_keyword = "高収入"
     # driverを起動
@@ -56,7 +54,6 @@ def main():
     driver.find_element_by_class_name("topSearch__button").click()
 
     # ページ終了まで繰り返し取得
-    # exp_name_list = []
     exp_name_list = []
     # 検索結果の一番上の会社名を取得
     name_list = driver.find_elements_by_class_name("cassetteRecruit__name")

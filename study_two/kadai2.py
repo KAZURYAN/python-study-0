@@ -5,8 +5,6 @@ import sys
 # import pandas as pd
 
 # Chromeを起動する関数
-
-
 def set_driver(driver_path, headless_flg):
     # Chromeドライバーの読み込み
     options = ChromeOptions()
@@ -70,7 +68,7 @@ def main():
     index = 2
     i = 2
     for i in range(len(exp_name_list)):
-        payroll = driver.find_element_by_xpath("/html/body/div[1]/div[3]/form/div/div[{}]/div/div[2]/div[1]/table/tbody/tr[4]/td".format(index))
+        payroll = driver.find_element_by_xpath(f"/html/body/div[1]/div[3]/form/div/div[{index}]/div/div[2]/div[1]/table/tbody/tr[4]/td")
         exp_pay_list.append(payroll.text)
         index = index + 1
 

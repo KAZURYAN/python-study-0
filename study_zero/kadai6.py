@@ -4,8 +4,8 @@ def existChara(charaName):
     name = ["たんじろう","ぎゆう","ねずこ","むざん"]
 
     if charaName in name:
-        print('{}は仲間です'.format(charaName))
+        print(f'{charaName}は仲間です')
     else:
-        print('{}は仲間では有りません'.format(charaName))
+        print(f'{charaName}は仲間では有りません')
 
 existChara('いのすけ')
