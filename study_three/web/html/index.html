@@ -1,0 +1,29 @@
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible">
+        <link rel="stylesheet" href="../css/index.css">
+        <title>eelテスト</title>
+    </head>
+
+    <script type="text/javascript" src="/eel.js"></script>
+
+    <script src="../js/eel_kimetsu.js"></script>
+
+    <body>
+        <div>
+            <h1>eelテスト</h1>
+            <label>CSVファイル名</label>
+            <input type="text" name="csv_name" id="csv_name">
+        </div>
+        <div>
+            <label>検索ワード</label>
+            <input type="text" name="search_word" id="search_word">
+            <button onClick="checkSearchWord()">検索</button>
+        </div>
+        <div>
+            <textarea readonly id="result_area"></textarea>
+        </div>
+    </body>
+</html>
