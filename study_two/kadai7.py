@@ -139,7 +139,6 @@ def main():
                 # 指定したWebページを開く
                 log_file.write('次ページへ遷移します\n')
                 driver.get(next_page)
-                driver.implicitly_wait(10)
                 page_count = page_count + 1
                 time.sleep(10)
 

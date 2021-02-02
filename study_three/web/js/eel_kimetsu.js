@@ -1,6 +1,6 @@
 function checkSearchWord() {
-    let searchWord = document.getElementById("search_word").value;
-    let csvName = document.getElementById("csv_name").value;
+    let searchWord = search_word.value;
+    let csvName = csv_name.value;
 
     if (searchWord.trim().length == "" ){
         alert("検索ワードが入力されていません");
