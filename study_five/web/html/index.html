@@ -1,0 +1,49 @@
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible">
+        <link rel="stylesheet" href="../css/index.css">
+        <title>eelテスト</title>
+    </head>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="/eel.js"></script>
+    <script src="../js/eel_order.js"></script>
+
+    <body>
+        <h1>POSシステム</h1>
+        <table class="js-order-table">
+            <tr>
+                <th>商品コード</th>
+                <th>個数</th>
+                <th>列追加</th>
+            </tr>
+            <!-- <tr data-key="1"> -->
+            <tr>
+                <td>
+                    <input type="text" name="order_code" class="order_code">
+                </td>
+                <td>
+                    <input type="text" name="quantity" class="quantity">
+                </td>
+                <td>
+                    <button onClick="plusRow()">+</button>
+                </td>
+            </tr>
+        </table>
+        <div>
+            <label>支払金額</label>
+        </div>
+        <div>
+            <input type="text" name="payment" id="payment">
+        </div>
+        <div>
+            <button onClick="order()">注文</button>
+        </div>
+        <div>
+            <textarea readonly id="result_area"></textarea>
+        </div>
+    </body>
+
+</html>
