@@ -59,16 +59,21 @@ class Order:
         message += f"\nお釣りの金額は{self.change}です"
         return message
 
+def load_csv_master_file(master_csv):
+    csv_file = open(master_csv,'r')
+    master_list = csv.reader(csv_file)
+    # ヘッダーをスキップする
+    header = next(master_list)
+
+    return master_list
+
 @eel.expose
 def order_confirm_to_python(order_confirm,payment):
 
-    # アイテムマスタ
+    # アイテムマスタのファイル名
     master_csv = "item_master.csv"
-    csv_file = open(master_csv, 'r')
-    # CSVデータを読み込む
-    item_list = csv.reader(csv_file)
-    # ヘッダーをスキップする
-    header = next(item_list)
+    # マスターファイルを読み込み、マスターをリスト側で返却する
+    item_list = load_csv_master_file(master_csv)
 
     item_master = []
     for item in item_list:
