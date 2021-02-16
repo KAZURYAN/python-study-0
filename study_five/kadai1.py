@@ -1,5 +1,7 @@
 import eel
 import csv
+import os
+import sys
 
 ### 商品クラス
 class Item:
@@ -59,6 +61,11 @@ class Order:
         message += f"\nお釣りの金額は{self.change}です"
         return message
 
+def resource_path(relative_path):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
+
 def load_csv_master_file(master_csv):
     csv_file = open(master_csv,'r')
     master_list = csv.reader(csv_file)
@@ -71,11 +78,13 @@ def load_csv_master_file(master_csv):
 def order_confirm_to_python(order_confirm,payment):
 
     # アイテムマスタのファイル名
-    master_csv = "item_master.csv"
+    master_csv_name = "item_master.csv"
+    master_csv = resource_path(master_csv_name)
+
     # マスターファイルを読み込み、マスターをリスト側で返却する
     item_list = load_csv_master_file(master_csv)
-
     item_master = []
+
     for item in item_list:
         item_master.append(Item(item[0],item[1],item[2]))
 
