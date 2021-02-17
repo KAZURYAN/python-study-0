@@ -3,37 +3,40 @@ import configparser
 import sys
 import json
 import pandas as pd
+import os
+from os.path import join, dirname
+from dotenv import load_dotenv
+from RequestRakutenRankAPI import RequestRakutenRankAPI
 
-# アプリIDを取得する
-def read_product_key():
-    config = configparser.ConfigParser()
-    config.read('apikey.conf')
-    key_name = 'API_KEY_PRODUCT'
-    return config.get(key_name, 'key')
+def read_api_key():
+    dotenv_path = join(dirname(__file__), '.env')
+    load_dotenv(dotenv_path)
 
-# パラメータを付随する
-def make_product_url(api_key, genre_id):
-    search_params = {
-        "format" :  "json",
-        "genreId" : genre_id,
-        "applicationId" : api_key
-    }
-    return search_params
+    return os.environ.get("API_KEY")
 
 def main():
+    # 商品ランキングを取得する楽天APIのURL
     base_url = 'https://app.rakuten.co.jp/services/api/IchibaItem/Ranking/20170628?'
 
     genre_id = input("ジャンルIDを入力してください:")
     if (genre_id == ""):
-        print("ジャンルIDが入力されませんでした")
+        print("ジャンルIDが入力されませんでしたので終了します")
         exit()
 
-    api_key = read_product_key()
-    params = make_product_url(api_key, genre_id)
+    api_key = read_api_key()
+    rankApi = RequestRakutenRankAPI(base_url, api_key, genre_id)
 
-    response = requests.get(base_url, params)
+    params = rankApi.make_url()
+    # 楽天API実行
+    response = rankApi.execute_api(params)
+    is_success = rankApi.success(response.status_code)
+
+    if (is_success == False):
+        print('APIの取得に失敗していますので処理を終了します')
+        exit()
+
+    # Json形式に変換します
     items = response.json()
-
     index_key = ['rank','itemName','itemPrice','genreId']
     item_list = []
 
