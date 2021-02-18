@@ -6,7 +6,7 @@ import pandas as pd
 import os
 from os.path import join, dirname
 from dotenv import load_dotenv
-from RequestRakutenRankAPI import RequestRakutenRankAPI
+from request_rakuten_rank_api import RequestRakutenRankAPI
 
 def read_api_key():
     dotenv_path = join(dirname(__file__), '.env')
