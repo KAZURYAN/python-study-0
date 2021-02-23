@@ -1,8 +1,9 @@
 import os
-from selenium.webdriver import Chrome, ChromeOptions
 import time
 import datetime
 import sys
+from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
 
 # Chromeを起動する関数
@@ -24,18 +25,6 @@ def set_driver(driver_path, headless_flg):
 
     # ChromeのWebDriverオブジェクトを作成する。
     return Chrome(executable_path=os.getcwd() + "/" + driver_path, options=options)
-
-# driver起動処理
-def openChromeDriver():
-    """chromedriver起動
-
-    Returns:
-        driver: driverを返却
-    """
-    if os.name == 'nt': #Windows
-        return set_driver("chromedriver.exe", False)
-    elif os.name == 'posix': #Mac
-        return set_driver("chromedriver", False)
 
 # 会社名を取得して、webelement形式で返却する
 def fetch_company_name_list(driver):
@@ -80,7 +69,7 @@ def main():
     log_file.write(f'検索キーワードを入力してください=>{search_keyword}\n')
 
     # driverを起動
-    driver = openChromeDriver()
+    driver = webdriver.Chrome(ChromeDriverManager().install())
 
     # Webサイトを開く
     driver.get(target_url)
