@@ -15,18 +15,18 @@
     <script type="text/javascript" src="../js/index.js"></script>
 
     <body>
-        <h3>楽天商品検索</h3>
-        <div class="col-md-12 order-md-1">
-            <h5 class="mb-3">【商品名検索】</h5>
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label for="rakutenProduct">商品名を入力して下さい</label>
+        <nav class="navbar navbar-light navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">楽天商品検索</a>
+        </nav>
+        <div class="container mt-5">
+            <div class="form-group">
+                <h4>楽天商品検索フォーム</h4>
+                <label for="oroductName">商品名</label>
+                <div class="mb-3">
                     <input type="text" class="form-control" id="rakutenProduct" value="">
                 </div>
+                <button onClick="searchRakutenProduct()" id="contentSearch" class="btn btn-primary" data-toggle="popver" data-content="検索に成功するとCSVがダウンロードされます">検索</button>
             </div>
-
-            <button onClick="searchRakutenProduct()" id="contentSearch" class="btn btn-primary" data-toggle="popver" data-content="検索に成功するとCSVがダウンロードされます">検索</button>
         </div>
-
     </body>
 </html>

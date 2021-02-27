@@ -18,8 +18,6 @@ def read_product_key():
 
 @eel.expose
 def search_rakuten_product(search_product):
-    # print(type(search_product))
-    # sys.exit()
     base_url = 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706?'
 
     api_key = read_product_key()
@@ -31,6 +29,13 @@ def search_rakuten_product(search_product):
     # 楽天APIを実行する
     response = product.execute_api(params)
     items = response.json()
+
+    is_success = product.success(response.status_code)
+    if (is_success == False):
+        print('APIの取得に失敗していますので処理を終了します')
+        print(response.status_code)
+        # exit()
+
     item_list = []
 
     for i in range(0,len(items['Items'])):
