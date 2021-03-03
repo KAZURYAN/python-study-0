@@ -32,22 +32,17 @@ def set_driver(driver_path, headless_flg):
 # main処理
 @eel.expose
 def search_homes(search_keyword):
-    print(search_keyword)
     target_url = "https://www.homes.co.jp/chintai/"
-
     # driverを起動
     driver = webdriver.Chrome(ChromeDriverManager().install())
     driver.implicitly_wait(5)
-
     # Webサイトを開く
     driver.get(target_url)
     time.sleep(5)
-
     # 検索窓に入力
     driver.find_element_by_class_name("inputTxt").send_keys(search_keyword)
     # 検索ボタンクリック
     driver.find_element_by_class_name("btnSubmit").click()
-
     # 各取得値保存リストの定義
     address_list = []
     traffic_list = []
@@ -123,7 +118,8 @@ def search_homes(search_keyword):
 
     # CSVへ出力する
     df = pd.DataFrame(search_result_list)
-    df.to_csv(f"{search_keyword}_list.csv", header=None, index=False)
+    df.columns = ['所在地','交通','築年数/階数']
+    df.to_csv(f"{search_keyword}_list.csv")
 
 # 直接起動された場合はmain()を起動(モジュールとして呼び出された場合は起動しないようにするため)
 if __name__ == "__main__":
